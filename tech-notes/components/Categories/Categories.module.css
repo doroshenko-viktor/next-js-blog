@@ -1,0 +1,12 @@
+.categories {
+  list-style: none;
+  display: flex;
+  gap: var(--indent-3);
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
+
+.categories a {
+  color: var(--color-black);
+  text-decoration: none;
+}

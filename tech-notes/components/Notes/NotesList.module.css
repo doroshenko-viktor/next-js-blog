@@ -1,0 +1,4 @@
+.notesList {
+  list-style: none;
+  margin-top: var(--indent-5);
+}

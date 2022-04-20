@@ -1,0 +1,17 @@
+.frame {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin: var(--indent-4);
+}
+
+.sectionCategories {
+  width: 30%;
+  padding: var(--indent-3);
+  border-right: 1px solid var(--color-primary);
+}
+
+.sectionMain {
+  padding: var(--indent-3) var(--indent-6);
+  max-width: 40%;
+}

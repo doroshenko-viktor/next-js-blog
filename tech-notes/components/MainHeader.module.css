@@ -1,0 +1,12 @@
+.mainHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--indent-3);
+}
+
+.mainLogoImg {
+  border: var(--border-width-bold) solid var(--color-black);
+  border-radius: 100%;
+  max-width: var(--width-5);
+}

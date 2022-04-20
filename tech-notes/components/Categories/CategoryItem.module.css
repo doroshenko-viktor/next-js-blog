@@ -1,0 +1,12 @@
+.category-item {
+  font-family: var(--font-subheading);
+  border: var(--border-width-bold) solid var(--color-text);
+  padding: var(--indent-3) var(--indent-4);
+  background-color: var(--color-primary);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.category-item:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}

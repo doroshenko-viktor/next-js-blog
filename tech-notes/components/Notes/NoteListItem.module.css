@@ -1,0 +1,67 @@
+.noteListItem {
+  /* z-index: 1; */
+  margin: var(--indent-3) 0;
+  padding: var(--indent-3);
+  border: 5px solid transparent;
+  transition: all 0.1s;
+  position: relative;
+  background-color: var(--color-white);
+}
+
+.noteListItem:hover {
+  border: var(--border-width-bold) solid var(--color-text);
+}
+
+.noteListItemEffectTop {
+  display: block;
+  position: absolute;
+  width: calc(100% + 2 * var(--border-width-bold));
+  height: calc(100% + 2 * var(--border-width-bold));
+  left: calc(-1 * var(--border-width-bold));
+  top: calc(-1 * var(--border-width-bold));
+  transition: top 0.2s ease-out, left 0.2s ease-out;
+}
+
+.noteListItem:hover .noteListItemEffectTop {
+  left: calc(-1 * (var(--indent-2) + 2 * var(--border-width-bold)));
+  top: calc(-1 * (var(--indent-2) + 2 * var(--border-width-bold)));
+  border: var(--border-width-bold) solid var(--color-accent-light);
+}
+
+.noteListItemEffectBottom {
+  z-index: -1;
+  display: block;
+  position: absolute;
+  width: calc(100% + 2 * var(--border-width-bold));
+  height: calc(100% + 2 * var(--border-width-bold));
+  left: calc(-1 * var(--border-width-bold));
+  top: calc(-1 * var(--border-width-bold));
+  transition: top 0.2s ease-in, left 0.2s ease-in;
+}
+
+.noteListItem:hover .noteListItemEffectBottom {
+  left: var(--indent-2);
+  top: var(--indent-2);
+  border: var(--border-width-bold) solid var(--color-accent);
+  background-color: var(--color-accent);
+}
+
+.noteListItem > a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.noteHeader {
+  margin-bottom: var(--indent-0);
+}
+
+.noteBody {
+  padding-right: var(--indent-5);
+  padding-bottom: var(--indent-2);
+  font-weight: 300;
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.noteListItem:hover .noteBody {
+  border-color: transparent;
+}

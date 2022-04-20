@@ -72,5 +72,4 @@ html,
 body {
   font-family: var(--font-main);
   color: var(--color-text);
-  background-color: var(--color-white);
 }
