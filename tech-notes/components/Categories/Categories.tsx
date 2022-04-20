@@ -1,11 +1,6 @@
 import CategoryItem from "./CategoryItem";
+import { CategoryData } from "../../types/categories";
 import styles from './Categories.module.css';
-
-type CategoryData = {
-    id: string;
-    link: string;
-    caption: string;
-};
 
 type Props = {
     values: CategoryData[]

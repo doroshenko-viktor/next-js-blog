@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link';
 import Categories from '../components/Categories';
 import MainHeader from '../components/MainHeader';
 import NotesList from '../components/Notes';
@@ -26,7 +27,11 @@ const Home: NextPage = () => {
           ]} />
         </section>
         <main className={styles.sectionMain}>
-          <MainHeader title='Tech Notes' />
+          <Link href='/'>
+            <a>
+              <MainHeader title='Tech Notes' />
+            </a>
+          </Link>
           <NotesList values={[
             {
               id: 1,

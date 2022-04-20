@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Abel&family=Inter:wght@100;200;300;400&family=Lora:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Inter:wght@400;700&family=Lora:wght@400&display=swap");
 
 * {
   margin: 0;
@@ -8,6 +8,9 @@
 
 :root {
   /* FONT */
+  --font-weight-light: 400;
+  --font-weight-mid: 500;
+  --font-weight-strong: 700;
   --font-heading: Abel;
   --font-subheading: Inter;
   --font-main: Lora;
@@ -57,19 +60,26 @@
 
 h1 {
   font-family: var(--font-heading);
-  font-size: var(--font-size-4);
-  font-weight: 300;
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-mid);
   color: var(--color-text);
 }
 
 h2 {
   font-family: var(--font-subheading);
   font-size: var(--font-size-3);
-  font-weight: 300;
+  font-weight: var(--font-weight-mid);
 }
 
 html,
 body {
   font-family: var(--font-main);
+  font-weight: var(--font-weight-light);
+  font-size: var(--font-size-1);
+  color: var(--color-text);
+}
+
+a {
+  text-decoration: none;
   color: var(--color-text);
 }

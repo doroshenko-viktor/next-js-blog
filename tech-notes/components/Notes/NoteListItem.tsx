@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './NoteListItem.module.css';
 
 type Props = {
@@ -10,14 +11,16 @@ type Props = {
 const NoteListItem: React.FC<Props> = ({ id, link, title, description }) => {
     return (<>
         <li key={id}>
-            <div className={styles.noteListItem}>
-                <a href={link}>
-                    <header className={styles.noteHeader}>
-                        <h2 className="note-title-heading">{title}</h2>
-                    </header>
-                    <main className={styles.noteBody}> {description} </main>
+            <Link href={link} >
+                <a>
+                    <div className={styles.noteListItem}>
+                        <header className={styles.noteHeader}>
+                            <h2 className="note-title-heading">{title}</h2>
+                        </header>
+                        <main className={styles.noteBody}> {description} </main>
+                    </div>
                 </a>
-            </div>
+            </Link>
         </li>
     </>);
 };
