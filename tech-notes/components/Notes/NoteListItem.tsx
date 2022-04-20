@@ -12,9 +12,6 @@ const NoteListItem: React.FC<Props> = ({ id, link, title, description }) => {
         <li key={id}>
             <div className={styles.noteListItem}>
                 <a href={link}>
-                    <div className={styles.noteListItemEffectBottom}></div>
-                    <div className={styles.noteListItemEffectTop}></div>
-
                     <header className={styles.noteHeader}>
                         <h2 className="note-title-heading">{title}</h2>
                     </header>
