@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Inter:wght@100;200;300;400&family=Lora:wght@400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* FONT */
+  --font-heading: Abel;
+  --font-subheading: Inter;
+  --font-main: Lora;
+  --font-size-0: 0.5rem;
+  --font-size-1: calc(1.618 * var(--font-size-0));
+  --font-size-2: calc(1.618 * var(--font-size-1));
+  --font-size-3: calc(1.618 * var(--font-size-2));
+  --font-size-4: calc(1.618 * var(--font-size-3));
+  --font-size-5: calc(1.618 * var(--font-size-4));
+  --font-size-6: calc(1.618 * var(--font-size-5));
+  --font-size-7: calc(1.618 * var(--font-size-6));
+  /* WIDTH */
+  --width-0: 0.45rem;
+  --width-1: calc(1.618 * var(--width-0));
+  --width-2: calc(1.618 * var(--width-1));
+  --width-3: calc(1.618 * var(--width-2));
+  --width-4: calc(1.618 * var(--width-3));
+  --width-5: calc(1.618 * var(--width-4));
+  --width-6: calc(1.618 * var(--width-5));
+  --width-7: calc(1.618 * var(--width-6));
+  /* INDENTATION */
+  --indent-0: 0.25rem;
+  --indent-1: calc(1.618 * var(--indent-0));
+  --indent-2: calc(1.618 * var(--indent-1));
+  --indent-3: calc(1.618 * var(--indent-2));
+  --indent-4: calc(1.618 * var(--indent-3));
+  --indent-5: calc(1.618 * var(--indent-4));
+  --indent-6: calc(1.618 * var(--indent-5));
+  --indent-7: calc(1.618 * var(--indent-6));
+  --indent-8: calc(1.618 * var(--indent-7));
+  /* COLORS */
+  /* --color-primary: #c4bbd1;
+  --color-text: #fcfbff;
+  --color-black: #14062c;
+  --color-white: rgb(33, 18, 58);
+  --color-accent: #6a32c5;
+  --color-accent-light: #b49ced; */
+  --color-primary: #d4d4d4;
+  --color-text: #403757;
+  --color-black: #1b0f3a;
+  --color-white: #fff;
+  --color-accent: #6a32c5;
+  --color-accent-light: #b49ced;
+  /* BORDER */
+  --border-width-bold: 5px;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-4);
+  font-weight: 300;
+  color: var(--color-text);
+}
+
+h2 {
+  font-family: var(--font-subheading);
+  font-size: var(--font-size-3);
+  font-weight: 300;
+}
+
+html,
+body {
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background-color: var(--color-white);
+}
