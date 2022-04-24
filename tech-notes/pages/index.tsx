@@ -24,6 +24,7 @@ const Home: NextPage = () => {
             { id: '4', caption: 'Utils', link: '#' },
             { id: '5', caption: 'Vim', link: '#' },
             { id: '6', caption: 'Algorithms', link: '#' },
+            { id: '7', caption: 'Python', link: '#' },
           ]} />
         </section>
         <main className={styles.sectionMain}>
