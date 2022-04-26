@@ -1,5 +1,7 @@
-import fs, { ObjectType } from "./fs-acl";
 import path from "path";
+import { ObjectType } from "./fs-acl";
+import * as fs from "./fs-acl";
+import * as formatting from "./formatting";
 
 const CONTENT_DIR = path.join(fs.CURRENT_DIR, "content");
 const FOLDERS_URL_ROOT = "/folders";
@@ -44,27 +46,14 @@ export async function getFolderAssetPathsRec(
   ];
 }
 
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function getAssetDisplayName(assetName: string): string {
-  return assetName.split(/_|-/).map(capitalize).join(" ");
-}
-
-export async function getFolderDetails(
+export async function getFolderAssetsSeparated(
   folderPath: string[]
 ): Promise<SeparationResult> {
   const joinedPath = path.join(CONTENT_DIR, ...folderPath);
-  const folderAssets: FolderAsset[] = (
-    await fs.getFolderContentList(joinedPath)
-  ).map((x) => {
-    return {
-      name: x,
-      displayName: getAssetDisplayName(x),
-      path: path.join(joinedPath, x),
-    };
-  });
+  const folderAssetNames = await fs.getFolderContentList(joinedPath);
+  const folderAssets = folderAssetNames
+    .filter(isPublicAsset)
+    .map(getFolderAssetFactory(joinedPath));
 
   const separated = await separateFilesAndDirs(folderAssets);
   separated.files = separated.files.map((file) => {
@@ -74,12 +63,24 @@ export async function getFolderDetails(
     };
   });
   return separated;
+
+  function getFolderAssetFactory(joinedPath: string) {
+    return (x: string): FolderAsset => ({
+      name: x,
+      displayName: formatting.getAssetDisplayName(x),
+      path: path.join(joinedPath, x),
+    });
+  }
 }
 
 export type SeparationResult = {
   files: FolderAsset[];
   dirs: FolderAsset[];
 };
+
+function isPublicAsset(x: string): boolean {
+  return !(x.startsWith(".") || x.startsWith("_"));
+}
 
 async function separateFilesAndDirs(
   assets: FolderAsset[]
@@ -104,7 +105,7 @@ async function separateFilesAndDirs(
 
 const exports = {
   getFolderAssetPaths,
-  getFolderDetails,
+  getFolderAssetsSeparated,
 };
 
 export default exports;

@@ -1,3 +1,7 @@
+/**
+ * Standard Node `fs` anticorruption layer
+ */
+
 import fs, { PathLike } from "fs";
 
 export const CURRENT_DIR = process.cwd();

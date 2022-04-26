@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import folders, { FolderAsset } from '../../lib/folders';
+import * as folders from '../../lib/folders';
 
 type Props = {
-    files: FolderAsset[],
-    dirs: FolderAsset[],
+    files: folders.FolderAsset[],
+    dirs: folders.FolderAsset[],
 };
 
 const Folders: React.FC<Props> = ({ files, dirs }: Props) => {
@@ -46,7 +46,7 @@ type PageParams = {
 
 export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext<PageParams>): Promise<GetStaticPropsResult<Props>> => {
     console.dir(params)
-    const { files, dirs } = await folders.getFolderDetails(params?.id || []);
+    const { files, dirs } = await folders.getFolderAssetsSeparated(params?.id || []);
     return {
         props: {
             files,
