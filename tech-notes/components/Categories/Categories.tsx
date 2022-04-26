@@ -1,9 +1,9 @@
 import CategoryItem from "./CategoryItem";
-import { CategoryData } from "../../types/categories";
 import styles from './Categories.module.css';
+import { CategoryDescription } from "../../lib/types";
 
 type Props = {
-    values: CategoryData[]
+    values: CategoryDescription[]
 };
 
 const Categories: React.FC<Props> = ({ values }: Props) => {
@@ -12,9 +12,9 @@ const Categories: React.FC<Props> = ({ values }: Props) => {
             {
                 values.map((categoryData, index) =>
                     <CategoryItem
-                        key={categoryData.id || index}
+                        key={index}
                         link={categoryData.link}
-                        caption={categoryData.caption}
+                        caption={categoryData.title}
                     />
                 )
             }

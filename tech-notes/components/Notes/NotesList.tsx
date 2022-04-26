@@ -1,9 +1,9 @@
-import { NoteData } from "../../types/notes";
+import { NoteDescription } from "../../lib/types";
 import NoteListItem from "./NoteListItem";
 import styles from './NotesList.module.css';
 
 type Props = {
-    values: NoteData[];
+    values: NoteDescription[];
 };
 
 const NotesList: React.FC<Props> = ({ values }) => {
@@ -12,8 +12,7 @@ const NotesList: React.FC<Props> = ({ values }) => {
             {
                 values.map((noteData, index) => {
                     return <NoteListItem
-                        key={noteData.id || index}
-                        id={noteData.id}
+                        key={noteData.link || index}
                         link={noteData.link}
                         title={noteData.title}
                         description={noteData.description}

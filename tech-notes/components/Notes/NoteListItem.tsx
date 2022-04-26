@@ -2,15 +2,14 @@ import Link from 'next/link';
 import styles from './NoteListItem.module.css';
 
 type Props = {
-    id: string | number;
     link: string;
     title: string;
     description: string;
 };
 
-const NoteListItem: React.FC<Props> = ({ id, link, title, description }) => {
+const NoteListItem: React.FC<Props> = ({ link, title, description }) => {
     return (<>
-        <li key={id}>
+        <li>
             <Link href={link} >
                 <a>
                     <div className={styles.noteListItem}>

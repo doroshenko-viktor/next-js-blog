@@ -46,7 +46,7 @@ type PageParams = {
 
 export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext<PageParams>): Promise<GetStaticPropsResult<Props>> => {
     console.dir(params)
-    const { files, dirs } = await folders.getFolderAssetsSeparated(params?.id || []);
+    const { notes, categories } = await folders.getFolderAssetsSeparated(params?.id || []);
     return {
         props: {
             files,

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './CategoryItem.module.css';
 
 type Props = {
@@ -8,11 +9,13 @@ type Props = {
 const CategoryItem: React.FC<Props> = ({ link, caption }: Props) => {
     return (<>
         <li>
-            <a href={link}>
-                <div className={styles.categoryItem}>
-                    {caption}
-                </div>
-            </a>
+            <Link href={link}>
+                <a>
+                    <div className={styles.categoryItem}>
+                        {caption}
+                    </div>
+                </a>
+            </Link>
         </li>
     </>);
 };

@@ -1,12 +1,21 @@
-import type { NextPage } from 'next'
+import type { GetStaticPropsResult, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link';
 import Categories from '../components/Categories';
 import MainHeader from '../components/MainHeader';
 import NotesList from '../components/Notes';
 import styles from './Home.module.css';
+import * as foldersService from '../lib/folders';
+import * as notesService from '../lib/notes';
+import * as categoriesService from '../lib/categories';
+import { CategoryDescription, NoteDescription } from '../lib/types';
 
-const Home: NextPage = () => {
+type Props = {
+  categories: CategoryDescription[],
+  notes: NoteDescription[]
+}
+
+const Home: NextPage<Props> = ({ categories, notes }) => {
   return (
     <>
       <Head>
@@ -17,15 +26,7 @@ const Home: NextPage = () => {
 
       <div className={styles.frame}>
         <section className={styles.sectionCategories}>
-          <Categories values={[
-            { id: '1', caption: 'C#', link: '#' },
-            { id: '2', caption: 'JavaScript', link: '#' },
-            { id: '3', caption: 'Rust', link: '#' },
-            { id: '4', caption: 'Utils', link: '#' },
-            { id: '5', caption: 'Vim', link: '#' },
-            { id: '6', caption: 'Algorithms', link: '#' },
-            { id: '7', caption: 'Python', link: '#' },
-          ]} />
+          <Categories values={categories} />
         </section>
         <main className={styles.sectionMain}>
           <Link href='/'>
@@ -33,42 +34,24 @@ const Home: NextPage = () => {
               <MainHeader title='Tech Notes' />
             </a>
           </Link>
-          <NotesList values={[
-            {
-              id: 1,
-              link: '#',
-              title: 'AutoFixture In C#',
-              description: 'AutoFixture testing strategies in C#',
-            },
-            {
-              id: 2,
-              link: '#',
-              title: 'JavaScript Events',
-              description: 'JS events basics',
-            },
-            {
-              id: 3,
-              link: '#',
-              title: 'Rust Useful Traits',
-              description: 'List of good to know common traits in Rust',
-            },
-            {
-              id: 4,
-              link: '#',
-              title: 'Creating C# CLI App',
-              description: 'Simple example of C# CLI application with Microsoft.Extensions.CommandLineUtils, MediatR and Serilog',
-            },
-            {
-              id: 6,
-              link: '#',
-              title: 'Asp.Net Core Project Configuration',
-              description: 'Configuration of Asp.Net Core project runtime Lorem ipsum dolor sit amet consectetur adipisicing elit.Nihil quo ipsa repudiandae doloribus minima, sunt hic quae atque rerum? Qui eum commodi quam dolores minima quae odit unde asperiores adipisci.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Veniam expedita debitis, cumque magnam dolor itaque blanditiis porro iure at, ad pariatur reprehenderit libero odio, accusantium ab labore nam? Laboriosam, blanditiis.',
-            },
-          ]} />
+          <NotesList values={notes} />
         </main>
       </div>
     </>
   )
 }
+
+export const getStaticProps = async (): Promise<GetStaticPropsResult<Props>> => {
+  const { categories: categoriesFiles } = await foldersService.getFolderAssetsSeparated([]);
+  const categories = categoriesService.getCategoriesDescriptions(categoriesFiles);
+  const lastNotes = await notesService.getLastNotesDetails(15);
+
+  return {
+    props: {
+      notes: lastNotes,
+      categories: categories,
+    }
+  }
+};
 
 export default Home
