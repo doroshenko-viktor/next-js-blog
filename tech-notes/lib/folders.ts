@@ -48,6 +48,7 @@ export type BlogAssets = {
   categories: FileDescription[];
 };
 
+// TODO: files dont used nowhere - change to get folders
 export async function getFolderAssetsSeparated(
   folderPath: string[]
 ): Promise<BlogAssets> {

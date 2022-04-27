@@ -16,6 +16,11 @@ export function getFullPath(root: string, relativePath?: string): string {
   return path.join(root, relativePath);
 }
 
+/**
+ * stream all files inside specified folder of content
+ * @param contentPath path to all content directory
+ * @param currentRoot current relative path inside content directory
+ */
 export async function* streamAllFilePaths(
   contentPath: string,
   currentRoot?: string
@@ -76,6 +81,29 @@ export const getFolderContentList = async (
       resolve(content);
     });
   });
+};
+
+export const getFolderFiles = async (
+  contentFolderPath: string,
+  relativePath: string
+): Promise<FileDescription[]> => {
+  const fullFolderPath = path.join(contentFolderPath, relativePath);
+  const folderAssets = await getFolderContentList(fullFolderPath);
+
+  const files: FileDescription[] = [];
+  for (const asset of folderAssets) {
+    const fileFullPath = path.join(fullFolderPath, asset);
+    const type = await getType(fileFullPath);
+    if (type === ObjectType.File) {
+      files.push({
+        name: asset,
+        path: path.join(fullFolderPath, asset),
+        relPath: path.join(relativePath, asset),
+      });
+    }
+  }
+
+  return files;
 };
 
 export enum ObjectType {

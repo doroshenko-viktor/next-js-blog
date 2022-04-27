@@ -3,11 +3,38 @@ import * as fs from "./fs-acl";
 import matter from "gray-matter";
 import { DescribedBlogAsset, FileDescription, NoteDescription } from "./types";
 import { NoteParseError } from "./errors";
+import path from "path";
 
 interface NoteDescriptionVerbose extends DescribedBlogAsset {
   date: Date;
   link: string;
 }
+
+export const getFolderNotesDetails = async (
+  folderRelPath: string
+): Promise<NoteDescription[]> => {
+  const isPublicNote = (x: FileDescription) => {
+    return assetsService.isPublicAsset(x.name) && assetsService.isNote(x.name);
+  };
+  
+  const files = (
+    await fs.getFolderFiles(assetsService.CONTENT_DIR, folderRelPath)
+  ).filter(isPublicNote);
+
+  const notesDescriptions: NoteDescription[] = [];
+  for (const file of files) {
+    const fileContent = await fs.getFileContent(file.path);
+    const parsed = parseNoteMetadata(fileContent, file.name, file.relPath);
+    notesDescriptions.push({
+      title: parsed.data.title,
+      date: parsed.data.date,
+      description: parsed.data.description,
+      link: file.relPath,
+    });
+  }
+
+  return notesDescriptions;
+};
 
 export const getLastNotesDetails = async (
   limit: number
@@ -52,24 +79,19 @@ export const getLastNotesDetails = async (
     return publicNotes;
   }
 
-  function parseNoteMetadata(note: string, name: string, relPath: string) {
-    try {
-      return matter(note);
-    } catch (err) {
-      throw new NoteParseError(
-        "Error parsing note",
-        name,
-        relPath,
-        err as Error
-      );
-    }
-  }
-
   function isNoteDescriptionValid(note: NoteDescriptionVerbose) {
     if (!note.title || !note.description || !note.date) return false;
     return true;
   }
 };
+
+function parseNoteMetadata(note: string, name: string, relPath: string) {
+  try {
+    return matter(note);
+  } catch (err) {
+    throw new NoteParseError("Error parsing note", name, relPath, err as Error);
+  }
+}
 
 function notesAgeComparator(
   a: NoteDescriptionVerbose,
