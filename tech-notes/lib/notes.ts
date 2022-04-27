@@ -2,6 +2,7 @@ import * as assetsService from "./assets";
 import * as fs from "./fs-acl";
 import matter from "gray-matter";
 import { DescribedBlogAsset, FileDescription, NoteDescription } from "./types";
+import { NoteParseError } from "./errors";
 
 interface NoteDescriptionVerbose extends DescribedBlogAsset {
   date: Date;
@@ -32,7 +33,7 @@ export const getLastNotesDetails = async (
       }
 
       const fileContent = await fs.getFileContent(path);
-      const parsed = matter(fileContent);
+      const parsed = parseNoteMetadata(fileContent, name, relPath);
 
       const note: NoteDescriptionVerbose = {
         title: parsed.data.title,
@@ -49,6 +50,19 @@ export const getLastNotesDetails = async (
     }
 
     return publicNotes;
+  }
+
+  function parseNoteMetadata(note: string, name: string, relPath: string) {
+    try {
+      return matter(note);
+    } catch (err) {
+      throw new NoteParseError(
+        "Error parsing note",
+        name,
+        relPath,
+        err as Error
+      );
+    }
   }
 
   function isNoteDescriptionValid(note: NoteDescriptionVerbose) {

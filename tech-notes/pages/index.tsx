@@ -42,15 +42,20 @@ const Home: NextPage<Props> = ({ categories, notes }) => {
 }
 
 export const getStaticProps = async (): Promise<GetStaticPropsResult<Props>> => {
-  const { categories: categoriesFiles } = await foldersService.getFolderAssetsSeparated([]);
-  const categories = categoriesService.getCategoriesDescriptions(categoriesFiles);
-  const lastNotes = await notesService.getLastNotesDetails(15);
+  try {
+    const { categories: categoriesFiles } = await foldersService.getFolderAssetsSeparated([]);
+    const categories = categoriesService.getCategoriesDescriptions(categoriesFiles);
+    const lastNotes = await notesService.getLastNotesDetails(15);
 
-  return {
-    props: {
-      notes: lastNotes,
-      categories: categories,
+    return {
+      props: {
+        notes: lastNotes,
+        categories: categories,
+      }
     }
+  } catch (err) {
+    console.error(err);
+    throw err;
   }
 };
 
