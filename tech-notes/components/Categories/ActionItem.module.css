@@ -1,0 +1,15 @@
+.actionItem {
+  font-family: var(--font-subheading);
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-light);
+  border: var(--border-width-bold) solid var(--color-text);
+  padding: var(--indent-3) var(--indent-4);
+  background-color: var(--color-primary);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.actionItem:hover {
+  background-color: var(--color-accent-opposite);
+  color: var(--color-white);
+  cursor: pointer;
+}

@@ -4,9 +4,10 @@ import styles from './CategoryItem.module.css';
 type Props = {
     link: string;
     caption: string;
+    action?: () => {};
 };
 
-const CategoryItem: React.FC<Props> = ({ link, caption }: Props) => {
+const CategoryItem: React.FC<Props> = ({ link, caption, action }: Props) => {
     return (<>
         <li>
             <Link href={link}>

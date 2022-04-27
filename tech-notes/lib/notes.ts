@@ -16,7 +16,7 @@ export const getFolderNotesDetails = async (
   const isPublicNote = (x: FileDescription) => {
     return assetsService.isPublicAsset(x.name) && assetsService.isNote(x.name);
   };
-  
+
   const files = (
     await fs.getFolderFiles(assetsService.CONTENT_DIR, folderRelPath)
   ).filter(isPublicNote);
@@ -29,7 +29,7 @@ export const getFolderNotesDetails = async (
       title: parsed.data.title,
       date: parsed.data.date,
       description: parsed.data.description,
-      link: file.relPath,
+      link: assetsService.getNoteLink(file.relPath),
     });
   }
 

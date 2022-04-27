@@ -42,17 +42,12 @@
   --indent-7: calc(1.618 * var(--indent-6));
   --indent-8: calc(1.618 * var(--indent-7));
   /* COLORS */
-  /* --color-primary: #c4bbd1;
-  --color-text: #fcfbff;
-  --color-black: #14062c;
-  --color-white: rgb(33, 18, 58);
-  --color-accent: #6a32c5;
-  --color-accent-light: #b49ced; */
   --color-primary: #d4d4d4;
   --color-text: #403757;
   --color-black: #1b0f3a;
   --color-white: #fff;
   --color-accent: #6a32c5;
+  --color-accent-opposite: #e64e20;
   --color-accent-light: #b49ced;
   /* BORDER */
   --border-width-bold: 5px;

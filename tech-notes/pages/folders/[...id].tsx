@@ -6,6 +6,13 @@ import * as categoriesService from '../../lib/categories';
 import * as notesService from '../../lib/notes';
 import { NoteDescription, CategoryDescription } from '../../lib/types';
 import path from 'path';
+import Head from 'next/head';
+import NotesList from '../../components/Notes';
+import MainHeader from '../../components/MainHeader';
+import Categories, { CategoryItem } from '../../components/Categories';
+import { MainSection } from '../../components/Parts/MainSection';
+import { SectionCategories } from '../../components/Parts/SectionCategories';
+import { Layout } from '../../components/Parts/Layout';
 
 type Props = {
     notes: NoteDescription[],
@@ -14,24 +21,30 @@ type Props = {
 
 const Folders: React.FC<Props> = ({ notes, categories }: Props) => {
     const router = useRouter();
-    const currentPath = router.asPath;
+
     return (<>
-        <h2>Folders:</h2>
-        <ul>
-
-            {categories.map((category, ind) => <Link key={ind} href={category.link}>
-                <a>
-                    <li >{category.title}</li>
-                </a>
-            </Link>)}
-
-        </ul>
-
-        <h2>Files:</h2>
-        <ul>
-            {notes.map((note, ind) => <li key={ind}>{note.title}</li>)}
-        </ul>
-        <button onClick={() => router.back()}><a>Back</a></button>
+        <Head>
+            <title>Tech Notes</title>
+            <link rel="icon" href="/images/favicon.ico" />
+        </Head>
+        <Layout>
+            <SectionCategories>
+                <Categories values={categories} />
+                <br />
+                <Categories values={[{
+                    title: "Return Back",
+                    action: () => { router.back() },
+                }]} />
+            </SectionCategories>
+            <MainSection>
+                <Link href='/'>
+                    <a>
+                        <MainHeader title='Tech Notes' />
+                    </a>
+                </Link>
+                <NotesList values={notes} />
+            </MainSection>
+        </Layout>
     </>);
 };
 
@@ -48,14 +61,6 @@ type PageParams = {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext<PageParams>): Promise<GetStaticPropsResult<Props>> => {
-    // console.dir(params)
-    // const { notes, categories } = await folders.getFolderAssetsSeparated(params?.id || []);
-    // return {
-    //     props: {
-    //         files,
-    //         dirs,
-    //     }
-    // }
     try {
         const { categories: categoriesFiles } = await folders
             .getFolderAssetsSeparated(params?.id || []);

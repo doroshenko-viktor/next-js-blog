@@ -17,5 +17,5 @@ export function isPrivateAsset(x: string) {
 }
 
 export function getNoteLink(path: string) {
-  return path.replace(".md", "");
+  return `/notes/${path.replace(".md", "")}`;
 }

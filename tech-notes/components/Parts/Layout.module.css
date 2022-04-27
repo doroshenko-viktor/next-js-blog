@@ -1,0 +1,6 @@
+.frame {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin: var(--indent-4);
+}
