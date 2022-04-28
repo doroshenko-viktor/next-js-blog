@@ -1,7 +1,14 @@
 import * as assetsService from "./assets";
 import * as fs from "./fs-acl";
-import matter from "gray-matter";
-import { DescribedBlogAsset, FileDescription, NoteDescription } from "./types";
+import matter, { GrayMatterFile } from "gray-matter";
+import { remark } from "remark";
+import remarkHtml from "remark-html";
+import {
+  DescribedBlogAsset,
+  FileDescription,
+  NoteContent,
+  NoteDescription,
+} from "./types";
 import { NoteParseError } from "./errors";
 import path from "path";
 
@@ -9,6 +16,66 @@ interface NoteDescriptionVerbose extends DescribedBlogAsset {
   date: Date;
   link: string;
 }
+
+export const getNoteContent = async (
+  noteRelPath: string
+): Promise<NoteContent> => {
+  const noteFullPath = path.join(assetsService.CONTENT_DIR, noteRelPath);
+  const fileContent = await fs.getFileContent(noteFullPath);
+  const parsedNote = parseNoteMetadata(fileContent, noteRelPath);
+  return await getNoteContentFromParsed(parsedNote);
+};
+
+async function getNoteContentFromParsed({
+  data,
+  content,
+}: GrayMatterFile<string>): Promise<NoteContent> {
+  const formattedContent = await remark().use(remarkHtml).process(content);
+  const blogHtmlContent = formattedContent.toString();
+
+  return {
+    title: data.title,
+    date: data.date,
+    content: blogHtmlContent,
+  };
+}
+
+export const getAllNotesPaths = async () => {
+  const contentPath = assetsService.CONTENT_DIR;
+  return await getAllNotesPathsRec(contentPath, "");
+
+  async function getAllNotesPathsRec(
+    contentRoot: string,
+    relPath: string
+  ): Promise<string[]> {
+    const assets = await fs.getFolderContentList(
+      path.join(contentRoot, relPath)
+    );
+
+    const notesPaths: string[] = [];
+
+    for (const asset of assets) {
+      if (assetsService.isPrivateAsset(asset)) continue;
+      console.log(`asset: ${asset}`);
+      const assetRelPath = path.join(relPath, asset);
+      const assetType = await fs.getType(path.join(contentRoot, assetRelPath));
+
+      if (assetType === fs.ObjectType.Directory) {
+        const dirNotesPaths = await getAllNotesPathsRec(
+          contentRoot,
+          assetRelPath
+        );
+        notesPaths.push(...dirNotesPaths);
+      }
+      if (assetType === fs.ObjectType.File) {
+        const noteLink = assetsService.getNoteLink(assetRelPath);
+        notesPaths.push(noteLink);
+      }
+    }
+
+    return notesPaths;
+  }
+};
 
 export const getFolderNotesDetails = async (
   folderRelPath: string
@@ -60,7 +127,7 @@ export const getLastNotesDetails = async (
       }
 
       const fileContent = await fs.getFileContent(path);
-      const parsed = parseNoteMetadata(fileContent, name, relPath);
+      const parsed = parseNoteMetadata(fileContent, relPath);
 
       const note: NoteDescriptionVerbose = {
         title: parsed.data.title,
@@ -85,11 +152,11 @@ export const getLastNotesDetails = async (
   }
 };
 
-function parseNoteMetadata(note: string, name: string, relPath: string) {
+function parseNoteMetadata(note: string, relPath: string) {
   try {
     return matter(note);
   } catch (err) {
-    throw new NoteParseError("Error parsing note", name, relPath, err as Error);
+    throw new NoteParseError("Error parsing note", relPath, err as Error);
   }
 }
 

@@ -21,4 +21,8 @@ export interface NoteDescription extends DescribedBlogAsset {
   link: string;
 }
 
-
+export type NoteContent = {
+  title: string;
+  date: string;
+  content: string;
+};

@@ -1,12 +1,7 @@
 export class NoteParseError extends Error {
   public readonly wrappedError?: Error;
 
-  constructor(
-    message: string,
-    public readonly noteName: string,
-    public readonly notePath: string,
-    err: Error
-  ) {
+  constructor(message: string, public readonly notePath: string, err: Error) {
     super(message);
 
     if (Error.captureStackTrace) {
@@ -17,6 +12,17 @@ export class NoteParseError extends Error {
   }
 
   public toString(): string {
-    return `${this.message};\nnote: ${this.noteName};path: ${this.notePath};\n${this.stack}`;
+    return `${this.message};\n;path: ${this.notePath};\n${this.stack}`;
+  }
+}
+
+export class BuildTimeError extends Error {
+  constructor(message: string) {
+    super(message);
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, BuildTimeError);
+    }
+    this.name = BuildTimeError.name;
   }
 }

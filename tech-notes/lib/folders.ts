@@ -9,6 +9,7 @@ export interface FolderAsset {
   path: string;
 }
 
+// TODO: better suits to categories.ts
 export async function getFolderAssetPaths(): Promise<string[]> {
   return await getFolderAssetPathsRec([]);
 }
