@@ -1,17 +1,13 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import Head from "next/head";
-import path from "path";
 import { BuildTimeError } from "../../lib/errors";
 import * as notesService from '../../lib/notes';
-import { NoteContent } from "../../lib/types";
 import * as assetService from '../../lib/assets';
+import { NoteContent } from "../../lib/types";
 import { Layout } from "../../components/Parts/Layout";
 import { MainSection } from "../../components/Parts/MainSection";
-import NotesList from "../../components/Notes";
 import MainHeader from "../../components/MainHeader";
 import Link from "next/link";
-import { SectionCategories } from "../../components/Parts/SectionCategories";
-import Categories from "../../components/Categories";
 import { NoteFormattedContent } from "../../components/Notes/NoteFormattedContent";
 
 type Props = {
@@ -19,7 +15,7 @@ type Props = {
     noteKey: string[];
 };
 
-const Note: React.FC<Props> = ({ noteKey, note }) => {
+const Note: React.FC<Props> = ({ note }) => {
     return (<>
         <Head>
             <title>{note.title}</title>
