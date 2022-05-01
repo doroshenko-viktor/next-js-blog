@@ -80,3 +80,78 @@ a {
   text-decoration: none;
   color: var(--color-text);
 }
+
+.hljs {
+  font-size: calc(var(--font-size-2) - 0.3rem);
+  line-height: var(--font-size-2);
+  margin: var(--indent-4) 0;
+  padding: var(--indent-4);
+  background-color: var(--code-color-bg);
+  color: #ffffff;
+  border-radius: var(--indent-2);
+  text-overflow: clip;
+  word-wrap: normal;
+  word-break: break-all;
+  display: block;
+  overflow-x: auto;
+  transition: all 0.3s ease-in-out;
+  scroll-behavior: smooth;
+  --code-color-1: #2d7dd2;
+  --code-color-2: #97CC04;
+  --code-color-3: #EEB902;
+  --code-color-4: #F45D01;
+  --code-color-5: #e4e1ee;
+  --code-color-bg: #242224;
+}
+
+.hljs-comment {
+  color: var(--code-color-5);
+}
+
+.hljs-meta {
+  color: var(--code-color-2);
+}
+
+.hljs-keyword {
+  color: var(--code-color-4);
+}
+
+.hljs-title {
+  color: var(--code-color-2);
+}
+
+.hljs-type {
+  color: var(--code-color-3);
+}
+
+.hljs-variable {
+  color: var(--code-color-2);
+}
+
+.hljs-string {
+  color: var(--code-color-1);
+}
+
+.hljs-attribute {
+  color: var(--code-color-2);
+}
+
+.hljs-attr {
+  color: var(--code-color-2);
+}
+
+.hljs-params {
+  color: var(--code-color-2);
+}
+
+.hljs-function {
+  color: var(--code-color-2);
+}
+
+.hljs-subst {
+  color: var(--code-color-3);
+}
+
+.hljs-number {
+  color: var(--code-color-2);
+}

@@ -3,6 +3,8 @@ import * as fs from "./fs-acl";
 import matter, { GrayMatterFile } from "gray-matter";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
+import { rehype } from "rehype";
+import rehypeHighlight from "rehype-highlight";
 import {
   DescribedBlogAsset,
   FileDescription,
@@ -30,13 +32,16 @@ async function getNoteContentFromParsed({
   data,
   content,
 }: GrayMatterFile<string>): Promise<NoteContent> {
-  const formattedContent = await remark().use(remarkHtml).process(content);
-  const blogHtmlContent = formattedContent.toString();
+  let formattedContent = await remark().use(remarkHtml).process(content);
 
+  const blogHtmlContent = await rehype()
+    .data("settings", { fragment: true })
+    .use(rehypeHighlight)
+    .process(formattedContent);
   return {
     title: data.title,
     date: data.date,
-    content: blogHtmlContent,
+    content: blogHtmlContent.toString(),
   };
 }
 
