@@ -29,12 +29,12 @@ const Folders: React.FC<Props> = ({ notes, categories }: Props) => {
         </Head>
         <Layout>
             <SectionCategories>
-                <Categories values={categories} />
-                <br />
                 <Categories values={[{
                     title: "Return Back",
                     action: () => { router.back() },
                 }]} />
+                <br />
+                <Categories values={categories} />
             </SectionCategories>
             <MainSection>
                 <Link href='/'>

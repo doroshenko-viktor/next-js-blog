@@ -6,7 +6,7 @@ type Props = {
 
 const TextHeader: React.FC<Props> = ({ title }) => {
     return (
-        <header className={styles.mainHeader}>
+        <header className={styles.textHeader}>
             <h1 className={styles.blogName}>{title}</h1>
         </header>
     );

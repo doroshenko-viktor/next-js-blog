@@ -1,9 +1,10 @@
 import * as assetsService from "./assets";
 import * as fs from "./fs-acl";
 import matter, { GrayMatterFile } from "gray-matter";
-import { remark } from "remark";
-import remarkHtml from "remark-html";
+// import { remark } from "remark";
+// import remarkHtml from "remark-html";
 import { rehype } from "rehype";
+import { unified } from "unified";
 import rehypeHighlight from "rehype-highlight";
 import {
   DescribedBlogAsset,
@@ -13,6 +14,10 @@ import {
 } from "./types";
 import { NoteParseError } from "./errors";
 import path from "path";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeFormat from "rehype-format";
+import rehypeStringify from "rehype-stringify";
 
 interface NoteDescriptionVerbose extends DescribedBlogAsset {
   date: Date;
@@ -32,17 +37,22 @@ async function getNoteContentFromParsed({
   data,
   content,
 }: GrayMatterFile<string>): Promise<NoteContent> {
-  let formattedContent = await remark().use(remarkHtml).process(content);
-
-  const blogHtmlContent = await rehype()
-    .data("settings", { fragment: true })
-    .use(rehypeHighlight)
-    .process(formattedContent);
-  return {
-    title: data.title,
-    date: data.date,
-    content: blogHtmlContent.toString(),
-  };
+  try {
+    const formattedContent = await unified()
+      .use(remarkParse)
+      .use(remarkRehype)
+      .use(rehypeFormat)
+      .use(rehypeHighlight)
+      .use(rehypeStringify)
+      .process(content);
+    return {
+      title: data.title,
+      date: data.date,
+      content: formattedContent.toString(),
+    };
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export const getAllNotesPaths = async () => {

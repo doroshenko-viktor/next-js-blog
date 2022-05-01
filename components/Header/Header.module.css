@@ -5,6 +5,14 @@
   gap: var(--indent-3);
 }
 
+.textHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--indent-3);
+  margin: var(--indent-5) 0;
+}
+
 .mainLogoImg {
   border: var(--border-width-bold) solid var(--color-text);
   border-radius: 100%;

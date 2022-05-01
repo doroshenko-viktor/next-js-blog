@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Abel&family=Inter:wght@400;700&family=Lora:wght@300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Inter:wght@400;700&family=Lora:wght@400;500;700&display=swap");
 
 * {
   margin: 0;
@@ -47,10 +47,10 @@
   --color-text: #403757;
   --color-black: #1b0f3a;
   --color-white: #fff;
-  --color-accent: #6a32c5;
+  --color-accent: #824ed7;
   --color-accent-opposite: #e64e20;
-  --color-accent-light: #b49ced;
-  --color-accent-extra-light: #f3f1fa;
+  --color-accent-light: #ad98dd;
+  --color-accent-extra-light: #edecf2;
   /* BORDER */
   --border-width-bold: 5px;
 }
@@ -81,13 +81,13 @@ a {
   color: var(--color-text);
 }
 
-.hljs {
+pre code.hljs {
   font-size: calc(var(--font-size-2) - 0.3rem);
   line-height: var(--font-size-2);
   margin: var(--indent-4) 0;
   padding: var(--indent-4);
   background-color: var(--code-color-bg);
-  color: #ffffff;
+  color: var(--code-color-text);
   border-radius: var(--indent-2);
   text-overflow: clip;
   word-wrap: normal;
@@ -96,28 +96,31 @@ a {
   overflow-x: auto;
   transition: all 0.3s ease-in-out;
   scroll-behavior: smooth;
-  --code-color-1: #2d7dd2;
-  --code-color-2: #97CC04;
-  --code-color-3: #EEB902;
-  --code-color-4: #F45D01;
-  --code-color-5: #e4e1ee;
-  --code-color-bg: #242224;
+  border: 0;
+  --code-color-1: #b76fdc;
+  --code-color-2: #97cc04;
+  --code-color-3: #eeb902;
+  --code-color-4: #fc4d61;
+  --code-color-5: #5bd8ff;
+  --code-color-6: #6496ff;
+  --code-color-text: #d2edeb;
+  --code-color-bg: #1b262b;
 }
 
 .hljs-comment {
-  color: var(--code-color-5);
+  color: var(--code-color-text);
 }
 
 .hljs-meta {
-  color: var(--code-color-2);
+  color: var(--code-color-6);
 }
 
 .hljs-keyword {
-  color: var(--code-color-4);
+  color: var(--code-color-1);
 }
 
 .hljs-title {
-  color: var(--code-color-2);
+  color: var(--code-color-4);
 }
 
 .hljs-type {
@@ -125,19 +128,19 @@ a {
 }
 
 .hljs-variable {
-  color: var(--code-color-2);
+  color: var(--code-color-3);
 }
 
 .hljs-string {
-  color: var(--code-color-1);
+  color: var(--code-color-5);
 }
 
 .hljs-attribute {
-  color: var(--code-color-2);
+  color: var(--code-color-3);
 }
 
 .hljs-attr {
-  color: var(--code-color-2);
+  color: var(--code-color-3);
 }
 
 .hljs-params {
@@ -149,9 +152,9 @@ a {
 }
 
 .hljs-subst {
-  color: var(--code-color-3);
+  color: var(--code-color-6);
 }
 
 .hljs-number {
-  color: var(--code-color-2);
+  color: var(--code-color-6);
 }

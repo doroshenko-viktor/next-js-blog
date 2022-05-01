@@ -23,14 +23,13 @@ const Note: React.FC<Props> = ({ note }) => {
         </Head>
         <SingleColumnLayout>
             <div>
-
                 <Link href='/'>
                     <a>
                         <TextHeader title="Tech Notes" />
                     </a>
                 </Link>
             </div>
-            <NoteFormattedContent content={note.content} />
+            <NoteFormattedContent title={note.title} content={note.content} />
         </SingleColumnLayout>
     </>);
 };
@@ -48,6 +47,7 @@ type PageParams = {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext<PageParams>): Promise<GetStaticPropsResult<Props>> => {
+    // TODO: try catch
     if (!params?.noteKey) throw new BuildTimeError("note ");
     const noteFileRelPath = assetService.getRelativeNoteFilePathFromLink(params.noteKey);
     const note = await notesService.getNoteContent(noteFileRelPath);
