@@ -4,11 +4,11 @@ import { BuildTimeError } from "../../lib/errors";
 import * as notesService from '../../lib/notes';
 import * as assetService from '../../lib/assets';
 import { NoteContent } from "../../lib/types";
-import { Layout } from "../../components/Parts/Layout";
 import { MainSection } from "../../components/Parts/MainSection";
-import MainHeader from "../../components/MainHeader";
 import Link from "next/link";
 import { NoteFormattedContent } from "../../components/Notes/NoteFormattedContent";
+import { TextHeader } from "../../components/Header";
+import { SingleColumnLayout } from "../../components/Layouts";
 
 type Props = {
     note: NoteContent;
@@ -21,23 +21,22 @@ const Note: React.FC<Props> = ({ note }) => {
             <title>{note.title}</title>
             <link rel="icon" href="/images/favicon.ico" />
         </Head>
-        <Layout>
-            <MainSection>
+        <SingleColumnLayout>
+            <div>
+
                 <Link href='/'>
                     <a>
-                        <MainHeader title='Tech Notes' />
+                        <TextHeader title="Tech Notes" />
                     </a>
                 </Link>
-                <NoteFormattedContent content={note.content} />
-            </MainSection>
-        </Layout>
+            </div>
+            <NoteFormattedContent content={note.content} />
+        </SingleColumnLayout>
     </>);
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const paths = await notesService.getAllNotesPaths();
-    console.log('paths')
-    console.dir(paths);
     return {
         paths,
         fallback: false,

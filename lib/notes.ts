@@ -56,7 +56,6 @@ export const getAllNotesPaths = async () => {
 
     for (const asset of assets) {
       if (assetsService.isPrivateAsset(asset)) continue;
-      console.log(`asset: ${asset}`);
       const assetRelPath = path.join(relPath, asset);
       const assetType = await fs.getType(path.join(contentRoot, assetRelPath));
 

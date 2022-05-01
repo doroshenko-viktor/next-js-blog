@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from 'next';
+import { GetStaticProps, GetStaticPropsResult } from 'next';
 import Link from 'next/link';
 import { CategoryDescription, NoteDescription } from '../../lib/types';
 import * as folders from "../../lib/folders";
@@ -32,7 +32,7 @@ const Folders: React.FC<Props> = ({ categories, notes }: Props) => {
 
 export const getStaticProps: GetStaticProps = async (): Promise<GetStaticPropsResult<Props>> => {
     try {
-        const { categories: categoriesFiles, notes: notesFiles } = await folders.getFolderAssetsSeparated([]);
+        const { categories: categoriesFiles } = await folders.getFolderAssetsSeparated([]);
         const categories = categoriesService.getCategoriesDescriptions(categoriesFiles);
         const notes = await notesService.getFolderNotesDetails("");
         return {

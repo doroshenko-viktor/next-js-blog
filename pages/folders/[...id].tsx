@@ -8,11 +8,11 @@ import { NoteDescription, CategoryDescription } from '../../lib/types';
 import path from 'path';
 import Head from 'next/head';
 import NotesList from '../../components/Notes';
-import MainHeader from '../../components/MainHeader';
-import Categories, { CategoryItem } from '../../components/Categories';
+import Categories from '../../components/Categories';
 import { MainSection } from '../../components/Parts/MainSection';
 import { SectionCategories } from '../../components/Parts/SectionCategories';
-import { Layout } from '../../components/Parts/Layout';
+import { Layout } from '../../components/Layouts/Layout';
+import { MainHeader } from '../../components/Header';
 
 type Props = {
     notes: NoteDescription[],
@@ -65,9 +65,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsC
         const { categories: categoriesFiles } = await folders
             .getFolderAssetsSeparated(params?.id || []);
         const categories = categoriesService.getCategoriesDescriptions(categoriesFiles);
-
         const pagePath = params?.id && path.join(...params.id) || '';
-        console.log(`page path: ${pagePath}`);
 
         const notes = await notesService.getFolderNotesDetails(pagePath);
         return {

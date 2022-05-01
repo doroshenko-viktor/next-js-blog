@@ -2,13 +2,13 @@ import type { GetStaticPropsResult, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link';
 import Categories from '../components/Categories';
-import MainHeader from '../components/MainHeader';
 import NotesList from '../components/Notes';
 import styles from './Home.module.css';
 import * as foldersService from '../lib/folders';
 import * as notesService from '../lib/notes';
 import * as categoriesService from '../lib/categories';
 import { CategoryDescription, NoteDescription } from '../lib/types';
+import { MainHeader } from '../components/Header';
 
 type Props = {
   categories: CategoryDescription[],

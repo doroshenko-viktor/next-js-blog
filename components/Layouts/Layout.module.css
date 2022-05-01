@@ -4,3 +4,9 @@
   align-items: stretch;
   margin: var(--indent-4);
 }
+
+.centeredSection {
+  max-width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
