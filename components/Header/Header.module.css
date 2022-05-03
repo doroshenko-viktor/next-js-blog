@@ -5,6 +5,34 @@
   gap: var(--indent-3);
 }
 
+.mainHeaderX h1 {
+  font-size: var(--font-size-4);
+}
+
+.mainHeaderX .mainLogoImg {
+  max-width: var(--width-6);
+  max-height: var(--width-6);
+  border: var(--border-width-bold) solid var(--color-text);
+}
+
+.mainHeaderM h1 {
+  font-size: var(--font-size-3);
+}
+
+.mainHeaderM .mainLogoImg {
+  max-width: var(--width-4);
+  max-height: var(--width-4);
+}
+
+.mainHeaderS h1 {
+  font-size: var(--font-size-2);
+}
+
+.mainHeaderS .mainLogoImg {
+  max-width: var(--width-3);
+  max-height: var(--width-3);
+}
+
 .textHeader {
   display: flex;
   flex-direction: row;
@@ -13,9 +41,10 @@
   margin: var(--indent-5) 0;
 }
 
-.mainLogoImg {
-  border: var(--border-width-bold) solid var(--color-text);
+.mainHeader .mainLogoImg {
   border-radius: 100%;
-  max-width: var(--width-6);
-  max-height: var(--width-6);
+}
+
+.blogName {
+  font-size: var(--font-size-3);
 }

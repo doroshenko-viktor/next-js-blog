@@ -4,10 +4,9 @@ import { BuildTimeError } from "../../lib/errors";
 import * as notesService from '../../lib/notes';
 import * as assetService from '../../lib/assets';
 import { NoteContent } from "../../lib/types";
-import { MainSection } from "../../components/Parts/MainSection";
 import Link from "next/link";
 import { NoteFormattedContent } from "../../components/Notes/NoteFormattedContent";
-import { TextHeader } from "../../components/Header";
+import { MainHeader } from "../../components/Header";
 import { SingleColumnLayout } from "../../components/Layouts";
 
 type Props = {
@@ -25,7 +24,7 @@ const Note: React.FC<Props> = ({ note }) => {
             <div>
                 <Link href='/'>
                     <a>
-                        <TextHeader title="Tech Notes" />
+                        <MainHeader title="Tech Notes" size="m" />
                     </a>
                 </Link>
             </div>

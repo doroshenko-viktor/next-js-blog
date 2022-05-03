@@ -9,6 +9,7 @@ description: "List of good to know common traits in Rust"
   - [std::cmp::PartialOrd](#stdcmppartialord)
 - [Lifecycle](#lifecycle)
   - [std::ops::Drop](#stdopsdrop)
+  - [std::future::Future](#stdfuturefuture)
 
 ## Comparison
 
@@ -70,7 +71,7 @@ The methods of this trait must be consistent with each other and with those of `
 
 [Full Doc](https://doc.rust-lang.org/std/ops/trait.Drop.html)
 
-Represents deconstructior for object, which will be called, when object is deleting.
+Represents deconstructor for object, which will be called, when object is deleting.
 
 ```rust
 struct HasDrop;
@@ -83,5 +84,9 @@ impl Drop for HasDrop {
 ```
 
 e.g. `Box`, `Vec`, `String`, `File`, and `Process` implement the `Drop` trait to free resources.
+
+### std::future::Future
+
+[Full Doc](https://doc.rust-lang.org/std/future/trait.Future.html)
 
 

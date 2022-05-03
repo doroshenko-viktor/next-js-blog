@@ -39,7 +39,7 @@ const Folders: React.FC<Props> = ({ notes, categories }: Props) => {
             <MainSection>
                 <Link href='/'>
                     <a>
-                        <MainHeader title='Tech Notes' />
+                        <MainHeader title='Tech Notes' size='x' />
                     </a>
                 </Link>
                 <NotesList values={notes} />

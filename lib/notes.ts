@@ -170,6 +170,7 @@ function parseNoteMetadata(note: string, relPath: string) {
   try {
     return matter(note);
   } catch (err) {
+    console.error(err);
     throw new NoteParseError("Error parsing note", relPath, err as Error);
   }
 }

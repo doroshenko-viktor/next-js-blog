@@ -6,6 +6,11 @@
   line-height: var(--font-size-3);
 }
 
+.noteTitle {
+  margin-top: var(--indent-6);
+  font-family: var(--font-subheading);
+}
+
 .note h2 {
   margin: var(--indent-6) 0 var(--indent-4) 0;
 }

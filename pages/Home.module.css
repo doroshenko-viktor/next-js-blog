@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  margin: var(--indent-4);
+  /* margin: var(--indent-4); */
 }
 
 .sectionCategories {
@@ -13,5 +13,27 @@
 
 .sectionMain {
   padding: var(--indent-3) var(--indent-6);
-  max-width: 40%;
+  max-height: 100vh;
+  overflow: scroll;
+  scroll-behavior: auto;
+}
+
+.notesList {
+  max-width: 70%;
+}
+
+@media (max-width: 1300px) {
+  .frame {
+    margin: var(--indent-1);
+    flex-direction: row;
+  }
+
+  .sectionMain {
+    max-width: 100%;
+    padding: var(--indent-1);
+  }
+
+  .notesList {
+    max-width: 100%;
+  }
 }

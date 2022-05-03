@@ -378,7 +378,7 @@ app.Execute(args);
 
 Here with `app.Command()` we create command handler with name `add`. If we run `--help` command of our app(inside of `./CLI` project) we will see something like this:
 
-```txt
+```log
 $: dotnet run -- --help
 
 
@@ -402,7 +402,7 @@ proper `add numbers` handler.
 
 Running help for `add` command in our `CLI` project we will get following result:
 
-```txt
+```log
 $: dotnet run -- add --help
 
 
@@ -419,7 +419,7 @@ Options:
 
 Now we can test our app. Running it with valid data gives following:
 
-```txt
+```log
 $: dotnet run -- add 2 2
 
 [23:10:46 INF] Adding values 2 and 2
@@ -428,7 +428,7 @@ $: dotnet run -- add 2 2
 
 Running with optional file path for saving result:
 
-```txt
+```log
 $: dotnet run -- add 2 2 --result-path results.txt
 
 [23:11:59 INF] Adding values 2 and 2
@@ -439,13 +439,13 @@ $: dotnet run -- add 2 2 --result-path results.txt
 
 And also file `results.txt` will be created with content:
 
-```txt
+```log
 Adding 2 + 2 = 4
 ```
 
 If we provide not valid input for add:
 
-```txt
+```log
 $: dotnet run -- add 2 asf
 
 [23:13:35 ERR] Error happened: Second argument asf is not a number
@@ -453,7 +453,7 @@ $: dotnet run -- add 2 asf
 
 And if we provide command, that does not exist program will return an error:
 
-```txt
+```log
 $: dotnet run -- subtract 2 2
 
 Specify --help for a list of available options and commands.

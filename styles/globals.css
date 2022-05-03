@@ -53,6 +53,7 @@
   --color-accent-extra-light: #edecf2;
   /* BORDER */
   --border-width-bold: 5px;
+  --border-width-thin: 2px;
 }
 
 h1 {

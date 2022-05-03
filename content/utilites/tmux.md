@@ -88,7 +88,7 @@ tmux source-file ~/.tmux.conf
 - To display correct colors: `set -g default-terminal "screen-256color"`
 - To change the default `<Prefix>`:
   
-  ```txt
+  ```conf
   unbind C-b
   set -g prefix C-a
   ```
@@ -96,7 +96,7 @@ tmux source-file ~/.tmux.conf
 - Change pane switching to more vim-like combinations with `<Alt>+<Shift>+<hjkl>`:
   Here `-n` flag defines, that we don't want to use `<Prefix>` in shortcut.
 
-  ```txt
+  ```conf
   bind -n M-Left select-pane -L
   bind -n M-Right select-pane -R
   bind -n M-Up select-pane -U
@@ -105,7 +105,7 @@ tmux source-file ~/.tmux.conf
 
 - Bindings for resizing panes:
   
-  ```txt
+  ```conf
   bind -n M-_ resize-pane -Z
   bind -T M-Down resize-pane -D 3
   bind -n M-Up resize-pane -U 3
@@ -115,14 +115,14 @@ tmux source-file ~/.tmux.conf
 
 - Show activity notifications from background windows:
 
-  ```txt
+  ```conf
   setw -g monitor-activity on
   set -g visual-activity on
   ```
 
 - It is often helpful to open new pane in current window, when working on some project in the same working directory. But by default `Tmux` opens new windows and panes in user's home directory. To change this use following configuration:
   
-  ```txt
+  ```conf
   bind c new-window -c "#{pane_current_path}"
   bind '"' split-window -c "#{pane_current_path}"
   bind % split-window -h -c "#{pane_current_path}"

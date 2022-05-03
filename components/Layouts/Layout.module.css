@@ -5,8 +5,18 @@
   margin: var(--indent-4);
 }
 
+
 .centeredSection {
   max-width: 40%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: var(--indent-4) auto;
+}
+
+@media (max-width: 1300px) {
+  .frame {
+    flex-direction: column;
+  }
+  
+  .centeredSection {
+    max-width: 90%;
+  }
 }

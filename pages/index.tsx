@@ -27,13 +27,18 @@ const Home: NextPage<Props> = ({ categories, notes }) => {
         <section className={styles.sectionCategories}>
           <Categories values={categories} />
         </section>
+
         <main className={styles.sectionMain}>
+
           <Link href='/'>
             <a>
-              <MainHeader title='Tech Notes' />
+              <MainHeader title='Tech Notes' size='x' />
             </a>
           </Link>
-          <NotesList values={notes} />
+
+          <div class={styles.notesList}>
+            <NotesList values={notes} />
+          </div>
         </main>
       </div>
     </>

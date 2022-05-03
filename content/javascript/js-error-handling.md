@@ -4,6 +4,13 @@ date: "2022-04-13"
 description: "JS error handling best practices"
 ---
 
+- [Error Object](#error-object)
+- [Error Handling](#error-handling)
+- [Async Error Handling](#async-error-handling)
+- [Error Event](#error-event)
+- [Custom Errors](#custom-errors)
+- [References](#references)
+
 When on some part of code execution unexpected situation happens will be created and thrown `Error` object. Then going up by call stack `JavaScript` interpreter will check for `try/catch` logic on each next
 level until the end of call stack resulting to termination of the program.
 
