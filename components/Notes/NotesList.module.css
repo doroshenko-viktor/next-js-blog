@@ -2,3 +2,9 @@
   list-style: none;
   margin-top: var(--indent-5);
 }
+
+@media (min-width: 3000px) {
+  .notesList {
+    width: 1000px;
+  }
+}

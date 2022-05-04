@@ -9,6 +9,8 @@ import * as notesService from '../lib/notes';
 import * as categoriesService from '../lib/categories';
 import { CategoryDescription, NoteDescription } from '../lib/types';
 import { MainHeader } from '../components/Header';
+import { SectionCategories } from '../components/Parts/SectionCategories';
+import { MainPageLayout } from '../components/Layouts';
 
 type Props = {
   categories: CategoryDescription[],
@@ -22,25 +24,20 @@ const Home: NextPage<Props> = ({ categories, notes }) => {
         <title>Tech Notes</title>
         <link rel="icon" href="/images/favicon.ico" />
       </Head>
-
-      <div className={styles.frame}>
-        <section className={styles.sectionCategories}>
-          <Categories values={categories} />
-        </section>
-
-        <main className={styles.sectionMain}>
-
+      <MainPageLayout
+        header={
           <Link href='/'>
             <a>
               <MainHeader title='Tech Notes' size='x' />
             </a>
           </Link>
-
-          <div class={styles.notesList}>
-            <NotesList values={notes} />
-          </div>
-        </main>
-      </div>
+        }
+        alt={
+          <Categories values={categories} />
+        }
+      >
+        <NotesList values={notes} />
+      </MainPageLayout>
     </>
   )
 }

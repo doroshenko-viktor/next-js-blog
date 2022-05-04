@@ -13,6 +13,7 @@ import { MainSection } from '../../components/Parts/MainSection';
 import { SectionCategories } from '../../components/Parts/SectionCategories';
 import { Layout } from '../../components/Layouts/Layout';
 import { MainHeader } from '../../components/Header';
+import { MainPageLayout } from '../../components/Layouts';
 
 type Props = {
     notes: NoteDescription[],
@@ -27,24 +28,27 @@ const Folders: React.FC<Props> = ({ notes, categories }: Props) => {
             <title>Tech Notes</title>
             <link rel="icon" href="/images/favicon.ico" />
         </Head>
-        <Layout>
-            <SectionCategories>
-                <Categories values={[{
-                    title: "Return Back",
-                    action: () => { router.back() },
-                }]} />
-                <br />
-                <Categories values={categories} />
-            </SectionCategories>
-            <MainSection>
+        <MainPageLayout
+            header={
                 <Link href='/'>
                     <a>
                         <MainHeader title='Tech Notes' size='x' />
                     </a>
                 </Link>
-                <NotesList values={notes} />
-            </MainSection>
-        </Layout>
+            }
+            alt={
+                <SectionCategories>
+                    <Categories values={[{
+                        title: "Return Back",
+                        action: () => { router.back() },
+                    }]} />
+                    <br />
+                    <Categories values={categories} />
+                </SectionCategories>
+            }
+        >
+            <NotesList values={notes} />
+        </MainPageLayout>
     </>);
 };
 

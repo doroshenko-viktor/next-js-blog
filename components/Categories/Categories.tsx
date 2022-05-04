@@ -1,6 +1,5 @@
 import CategoryItem from "./CategoryItem";
 import styles from './Categories.module.css';
-import { CategoryDescription } from "../../lib/types";
 import ActionItem from "./ActionItem";
 
 type Link = {
