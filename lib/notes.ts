@@ -1,9 +1,7 @@
 import * as assetsService from "./assets";
 import * as fs from "./fs-acl";
 import matter, { GrayMatterFile } from "gray-matter";
-// import { remark } from "remark";
-// import remarkHtml from "remark-html";
-import { rehype } from "rehype";
+import remarkGfm from "remark-gfm";
 import { unified } from "unified";
 import rehypeHighlight from "rehype-highlight";
 import {
@@ -40,6 +38,7 @@ async function getNoteContentFromParsed({
   try {
     const formattedContent = await unified()
       .use(remarkParse)
+      .use(remarkGfm)
       .use(remarkRehype)
       .use(rehypeFormat)
       .use(rehypeHighlight)
@@ -52,6 +51,7 @@ async function getNoteContentFromParsed({
     };
   } catch (err) {
     console.error(err);
+    throw err;
   }
 }
 

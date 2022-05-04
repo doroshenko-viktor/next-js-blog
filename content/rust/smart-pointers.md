@@ -1,7 +1,7 @@
 ---
 title: Rust Smart Pointers
 date: "2022-02-26"
-description: "Rust smart pointers definition, kinds and usecases."
+description: "Rust smart pointers definition, kinds and use cases."
 ---
 
 `Smart pointers` are data structures that not only act like a pointer but also have additional
@@ -192,7 +192,7 @@ fn main() {
 
 this will print:
 
-```log
+```txt
 CustomSmartPointers created.
 Dropping CustomSmartPointer with data `other stuff`!
 Dropping CustomSmartPointer with data `my stuff`!
@@ -207,7 +207,7 @@ The `Rc<T>` type keeps track of the number of references to a value to determine
 the value is still in use. If there are zero references to a value, the value can be cleaned up
 without any references becoming invalid.
 
-![shared ownership](images/smart_pointers_1.png)
+![shared ownership](_images/smart_pointers_1.png)
 
 Here `b` and `c` have references to `a`.
 
